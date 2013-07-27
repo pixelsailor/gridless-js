@@ -1,0 +1,28 @@
+// Personal set of mixins to extend Bootstrap
+
+// Set HTML font size to enable rem usage
+html { font-size: 62.5%; } // 1rem will equal 10px
+
+// rem font-size
+@mixin font-size($size: 1.4) {
+	font-size: ($size * 10) + px;
+	font-size: $size + rem;
+}
+
+// Mixin for implementing css3 calc()
+@mixin calc($property, $expression) {
+	#{$property}: -moz-calc(#{$expression});
+	#{$property}: -o-calc(#{$expression});
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+
+// CSS3 Content Columns
+@mixin css-columns($columnCount, $columnGap: $gutter) {
+  -webkit-column-count: $columnCount;
+     -moz-column-count: $columnCount;
+          column-count: $columnCount;
+  -webkit-column-gap: $columnGap;
+     -moz-column-gap: $columnGap;
+          column-gap: $columnGap;
+}

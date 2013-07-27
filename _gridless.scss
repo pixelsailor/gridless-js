@@ -1,0 +1,315 @@
+
+/* Gridless
+ * Requires custom Modernizr build to include csscalc()
+ * http://modernizr.com/download/ Non-core detects
+------------------------------------------------------------*/
+
+$gutter: 19px;
+// On by default. Use "false" to turn margins off and use padding for the gutter instead 
+//$margins: true;
+
+// Nothing below this line needs to be edited
+// ----------------------------------------------------------
+
+
+// Column span variables. Reference these keywords for use in gl-span()
+$one1:						100%;
+
+$one2:						50%;
+
+$one3:						33.333333%;
+$two3:						66.666667%;
+
+$one4:						25%;
+$two4:						50%;
+$three4:						75%;
+$four4:						100%;
+
+$one5:						20%;
+$two5:						40%;
+$three5:						60%;
+$four5:						80%;
+$five5:						100%;
+
+$one6:						16.666667%;
+$two6:						33.333333%;
+$three6:						50%;
+$four6:						66.666667%;
+$five6:						83.333333%;
+$six6:						100%;
+
+$one7:						14.285714%;
+$one8:						12.5%;
+$one9:						11.111111%;
+$one10:						10%;
+$one11:						9.090909%;
+$one12:						8.333333%;
+
+
+
+$two7:						28.571429%;
+$two8:						$one4;
+$two9:						22.222222%;
+$two10:						$one5;
+$two11:						18.181818%;
+$two12:						$one6;
+
+
+
+
+$three7:						42.857143%;
+$three8:						37.5%;
+$three9:						$one3;
+$three10:					30%;
+$three11:					27.272727%;
+$three12:					$one4;
+
+
+
+$four7:						57.142857%;
+$four8:						$one2;
+$four9:						44.444444%;
+$four10:						$two5;
+$four11:						36.363636%;
+$four12:						$one3;
+
+
+$five7:						71.428571%;
+$five8:						62.5%;
+$five9:						55.555556%;
+$five10:						$one2;
+$five11:						45.454545%;
+$five12:						41.666667%;
+
+$six7:						85.714286%;
+$six8:						$three4;
+$six9:						$two3;
+$six10:						60%;
+$six11:						54.545454%;
+$six12:						$one2;
+
+$seven8:						87.5%;
+$seven9:						77.777778%;
+$seven10:					70%;
+$seven11:					63.636364%;
+$seven12:					58.333333%;
+
+$eight9:						88.888889%;
+$eight10:					80%;
+$eight11:					72.727273%;
+$eight12:					$two3;
+
+$nine10:						90%;
+$nine11:						81.818182%;
+$nine12:						$three4;
+
+$ten11:						90.909091%;
+$ten12:						83.333333%;
+
+$eleven12:					91.666667%;
+
+/*
+// Mixin for implementing css3 calc()
+@mixin calc($property, $expression) {
+	#{$property}: -moz-calc(#{$expression});
+	#{$property}: -o-calc(#{$expression});
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+
+// CSS3 Content Columns
+@mixin css-columns($columnCount, $columnGap: $gutter) {
+  -webkit-column-count: $columnCount;
+     -moz-column-count: $columnCount;
+          column-count: $columnCount;
+  -webkit-column-gap: $columnGap;
+     -moz-column-gap: $columnGap;
+          column-gap: $columnGap;
+}
+*/
+
+/*
+@mixin gl-box() {
+	//margin-left: -1*$gutter;
+	&::before,
+	&::after {
+		content: "";
+		display: table;
+		line-height: 0;
+	}
+	&::after {
+		clear: both;
+	}
+	.no-csscalc & {
+		margin-left: -1*($gutter/2);
+		margin-right: -1*($gutter/2);
+		> * {
+			margin-left: $gutter/2;
+		}
+	}
+	.csscalc & {
+		margin-left: -1*$gutter;
+		> * {
+			margin-left: $gutter;
+		}
+	}
+}
+*/
+
+@mixin gl-grid() {
+	margin-left: -1*$gutter;
+	&::before,
+	&::after {
+		content: "";
+		display: table;
+		line-height: 0;
+	}
+	&::after {
+		clear: both;
+	}
+	> * {
+		margin-left: $gutter;
+	}
+/*
+	.no-csscalc & {
+		margin-left: -1*($gutter/2);
+		margin-right: -1*($gutter/2);
+		> * {
+			margin-left: $gutter/2;
+		}
+	}
+	.csscalc & {
+		margin-left: -1*$gutter;
+		> * {
+			margin-left: $gutter;
+		}
+	}
+*/
+}
+
+@mixin gl-span($width:auto) {
+	@include box-sizing(border-box);
+	float: left;
+	margin-bottom: $gutter;
+	width: $width;
+/*
+	.no-csscalc & {
+		margin-left: 0 !important;
+		padding-left: $gutter/2;
+		padding-right: $gutter/2;
+	}
+	.csscalc & {
+		//margin-left: $gutter;
+		@include calc(width, "#{$width} - #{$gutter}");
+	}
+*/
+}
+
+// For elements (headers, text) that are within a gridless box but not inside a
+// cell, use gl-reset to get proper alignment
+@mixin gl-reset() {
+	&::before,
+	&::after {
+		content: "";
+		display: table;
+		line-height: 0;
+	}
+	&::after {
+		clear: both;
+	}
+/*
+	.no-csscalc & {
+		margin-left: $gutter/2;
+	}
+	.csscalc & {
+		margin-left: $gutter;
+	}
+*/
+}
+
+
+/* YAML Column Reference */
+//.ym-column {  }
+//.ym-col[1|2|3] {  }
+//.ym-cbox, .ym-cbox-left, .ym-cbox-right {  }
+// 3 Column 1-3-2
+.ym-col1 { width: 25%; } // left column
+.ym-col2 { width: 25%; } // right column
+.ym-col3 { margin-left: 25%; margin-right: 25%; } // center column
+
+// 2 Column: Flexible content & Fixed sidebar; sidebar below content; Sidebar left
+.ym-column { display: block; overflow: hidden; padding-left: 250px; width: auto; }
+.ym-content { position: relative; float: left; width: 100%; }
+.ym-sidebar { position: relative; float: left; width: 250px; right: 250px; _right: 0px; margin-left: -100%; }
+
+// 2 Column: Flexible content & Fixed sidebar; sidebar below content; Sidebar right
+.ym-column { display: block; overflow: hidden; padding-left: 250px; width: auto; }
+.ym-content { position: relative; float: left; width: 100%; }
+.ym-sidebar { position: relative; float: left; width: 250px; margin-right: -250px; }
+
+// 2 Column: Same unit; sidebar below content; Sidebar left
+.ym-content { float: right; width: 75%; }
+.ym-sidebar { margin-right: 75% }
+
+// 2 Column: Same unit; sidebar below content; Sidebar right
+.ym-content { float: left; width: 75%; }
+.ym-sidebar { margin-left: 75% }
+
+// 2 Column: Flexible content & Fixed sidebar; sidebar above content; Sidebar left
+.ym-sidebar { float: left; width: 250px; }
+.ym-content { margin-left: 250px; }
+
+// 2 Column: Flexible content & Fixed sidebar; sidebar above content; Sidebar right
+.ym-sidebar { float: right; width: 250px; }
+.ym-content { margin-right: 250px; }
+
+
+
+/* Columns */
+// gl-cols([true,false], [left,right], $width)
+@mixin gl-cols($sidebar, $side, $width) {
+	@include clearfix();
+	&>* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+	}
+	@if $sidebar == true {
+		&>*:first-child { // navigation on top
+			float: $side;
+			width: $width;
+			//@include calc(width, "#{$width} - #{$gutter}");
+		}
+		&>*:last-child { // content
+			$margin: "margin-#{$side}";
+			@include calc($margin, "#{$width} + #{$gutter}");
+		}
+	}
+	@else {
+		&>*:first-child { // content on top
+			@if $side == left { float: right; } @else { float: left; }
+			@include calc(width, "#{$width} - #{$gutter}");
+		}
+		&>*:last-child {
+			@if $side == left { margin-right: $width; } @else { margin-left: $width; }
+		}
+	}
+}
+
+// Scenario 3
+/*
+@mixin gl-col($type, $width:auto, $side:none) {
+	@include box-sizing(border-box);
+	//@include clearfix();
+	@if $type == sidebar {
+		float: $side;
+		width: $width;
+	}
+	@else if $side == left { // make room for sidebar on left
+		margin-left: $width + $gutter;
+	}
+	@else {
+		margin-right: $width + $gutter; // make room for sidebar on right
+	}
+}
+*/
